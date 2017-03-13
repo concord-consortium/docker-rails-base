@@ -1,4 +1,4 @@
-FROM concordconsortium/ruby:1.9.3
+FROM ruby:2.2.6
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 
 # for a JS runtime
