@@ -7,6 +7,8 @@ RUN apt-get install -qq -y nodejs
 # install software-properties-common for add-apt-repository
 RUN apt-get install -qq -y software-properties-common
 
+ARG RAILS_LTS_PASS
+
 # clean up ruby / gems / bundler
 RUN gem update --system
 RUN gem update bundler
@@ -18,4 +20,4 @@ RUN gem update bundler
 RUN GEM_HOME=/usr/local/lib/ruby/gems/2.2.0 gem cleanup bundler
 
 # install base version of rails
-RUN gem install rails -v 3.2.22.5
+RUN gem install rails -v 3.2.22.9 --source "https://concord:$RAILS_LTS_PASS@gems.railslts.com"
