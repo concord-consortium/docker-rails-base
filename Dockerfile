@@ -19,5 +19,8 @@ RUN gem update bundler
 # location where bundler is installed
 RUN GEM_HOME=/usr/local/lib/ruby/gems/2.2.0 gem cleanup bundler
 
-# install base version of rails
+# Install base version of Rails
 RUN gem install rails -v 3.2.22.9 --source "https://concord:$RAILS_LTS_PASS@gems.railslts.com"
+
+# Configure Bundler with Rails LTS credentials
+RUN bundle config gems.railslts.com concord:$RAILS_LTS_PASS
