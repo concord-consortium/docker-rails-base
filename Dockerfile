@@ -1,4 +1,4 @@
-FROM ruby:2.2.6
+FROM ruby:2.3.7
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 
 # for a JS runtime
@@ -17,7 +17,7 @@ RUN gem update bundler
 #   gem cleanup bundler
 # but now bundler is installed outside of GEM_HOME, so that command needs specify the
 # location where bundler is installed
-RUN GEM_HOME=/usr/local/lib/ruby/gems/2.2.0 gem cleanup bundler
+RUN GEM_HOME=/usr/local/lib/ruby/gems/2.3.0 gem cleanup bundler
 
 # Install base version of Rails
 RUN gem install rails -v 3.2.22.9 --source "https://concord:$RAILS_LTS_PASS@gems.railslts.com"
