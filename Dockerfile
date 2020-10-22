@@ -19,8 +19,11 @@ RUN gem update bundler
 # location where bundler is installed
 RUN GEM_HOME=/usr/local/lib/ruby/gems/2.3.0 gem cleanup bundler
 
+# Install a sprockets version supported in ruby 2.3
+RUN gem install sprockets -v 3.7.2
+
 # Install base version of Rails
-RUN gem install rails -v 3.2.22.19 --source "https://concord:$RAILS_LTS_PASS@gems.railslts.com"
+RUN gem install rails -v 4.2.11.17 --source "https://concord:$RAILS_LTS_PASS@gems.railslts.com"
 
 # Configure Bundler with Rails LTS credentials
 RUN bundle config gems.railslts.com concord:$RAILS_LTS_PASS

@@ -2,7 +2,7 @@
 
 Base Docker Rails image for the portal and LARA.
 
-Currently uses Rails LTS 3.2.22.
+Currently uses Rails LTS 4.2.11.17 with Ruby 2.3.7.
 
 To build new image:
 
