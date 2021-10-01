@@ -1,11 +1,15 @@
 FROM ruby:2.3.7
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 
-# for a JS runtime
-RUN apt-get install -qq -y nodejs
-
+# Update apt packages and upgrade installed packages
+# add node for the JS runtime
 # install software-properties-common for add-apt-repository
-RUN apt-get install -qq -y software-properties-common
+# clean up the apt-get cache
+RUN apt-get update -qq && apt-get upgrade -y \
+&& apt-get install -y \
+  build-essential \
+  libpq-dev \
+  nodejs \
+  software-properties-common
 
 ARG RAILS_LTS_PASS
 
@@ -20,7 +24,7 @@ RUN gem update bundler
 RUN GEM_HOME=/usr/local/lib/ruby/gems/2.3.0 gem cleanup bundler
 
 # Install base version of Rails
-RUN gem install rails -v 3.2.22.19 --source "https://concord:$RAILS_LTS_PASS@gems.railslts.com"
+RUN gem install rails -v 3.2.22.25 --source "https://concord:$RAILS_LTS_PASS@gems.railslts.com"
 
 # Configure Bundler with Rails LTS credentials
 RUN bundle config gems.railslts.com concord:$RAILS_LTS_PASS
